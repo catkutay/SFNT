@@ -19636,16 +19636,6 @@ struct Hide_Show_t21BBE830397B48D7EF9417D116A1E6E09C053520  : public MonoBehavio
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Char_Static_Mesh_4;
 	// UnityEngine.GameObject Hide_Show::char_static
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___char_static_5;
-	// UnityEngine.GameObject Hide_Show::HardHat
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___HardHat_6;
-	// UnityEngine.GameObject Hide_Show::OnScreenPrompt_01
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___OnScreenPrompt_01_7;
-	// UnityEngine.GameObject Hide_Show::OnScreenPrompt_02
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___OnScreenPrompt_02_8;
-	// UnityEngine.GameObject Hide_Show::HiVisVest
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___HiVisVest_9;
-	// UnityEngine.GameObject Hide_Show::Boots
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Boots_10;
 };
 
 // HyperlinkHandler
@@ -19867,36 +19857,32 @@ struct PanelShowHide_t8E410B3E230C3CE68CCC2278393E3C70B2EDD9C6  : public MonoBeh
 // ProductPlacement
 struct ProductPlacement_t7B13301C1D4A588FA03FABBC947644559CB20929  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
-	// UnityEngine.GameObject ProductPlacement::Start_Button
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Start_Button_4;
-	// UnityEngine.GameObject ProductPlacement::OnScreenPrompt_01
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___OnScreenPrompt_01_5;
 	// System.Boolean ProductPlacement::<GroundPlaneHitReceived>k__BackingField
-	bool ___U3CGroundPlaneHitReceivedU3Ek__BackingField_6;
+	bool ___U3CGroundPlaneHitReceivedU3Ek__BackingField_4;
 	// UnityEngine.GameObject ProductPlacement::Character
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Character_7;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Character_5;
 	// UnityEngine.GameObject ProductPlacement::TranslationIndicator
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___TranslationIndicator_8;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___TranslationIndicator_6;
 	// UnityEngine.GameObject ProductPlacement::RotationIndicator
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___RotationIndicator_9;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___RotationIndicator_7;
 	// System.Single ProductPlacement::ProductSize
-	float ___ProductSize_10;
+	float ___ProductSize_8;
 	// UnityEngine.MeshRenderer ProductPlacement::mChairRenderer
-	MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___mChairRenderer_15;
+	MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___mChairRenderer_13;
 	// UnityEngine.Material[] ProductPlacement::mChairMaterials
-	MaterialU5BU5D_t2B1D11C42DB07A4400C0535F92DBB87A2E346D3D* ___mChairMaterials_16;
+	MaterialU5BU5D_t2B1D11C42DB07A4400C0535F92DBB87A2E346D3D* ___mChairMaterials_14;
 	// UnityEngine.Material[] ProductPlacement::mChairMaterialsTransparent
-	MaterialU5BU5D_t2B1D11C42DB07A4400C0535F92DBB87A2E346D3D* ___mChairMaterialsTransparent_17;
+	MaterialU5BU5D_t2B1D11C42DB07A4400C0535F92DBB87A2E346D3D* ___mChairMaterialsTransparent_15;
 	// UnityEngine.Camera ProductPlacement::mMainCamera
-	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___mMainCamera_18;
+	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___mMainCamera_16;
 	// System.String ProductPlacement::mFloorName
-	String_t* ___mFloorName_19;
+	String_t* ___mFloorName_17;
 	// UnityEngine.Vector3 ProductPlacement::mOriginalChairScale
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___mOriginalChairScale_20;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___mOriginalChairScale_18;
 	// System.Boolean ProductPlacement::mIsPlaced
-	bool ___mIsPlaced_21;
+	bool ___mIsPlaced_19;
 	// System.Int32 ProductPlacement::mAutomaticHitTestFrameCount
-	int32_t ___mAutomaticHitTestFrameCount_22;
+	int32_t ___mAutomaticHitTestFrameCount_20;
 };
 
 // RockPileController

@@ -12,8 +12,8 @@ using Vuforia.UnityRuntimeCompiled;
 public class ProductPlacement : MonoBehaviour
 {
 
-    public GameObject Start_Button;
-    public GameObject OnScreenPrompt_01;
+    //public GameObject Start_Button;
+    //public GameObject OnScreenPrompt_01;
 
     public bool GroundPlaneHitReceived { get; private set; }
     Vector3 ProductScale
@@ -85,16 +85,16 @@ public class ProductPlacement : MonoBehaviour
 
             SnapProductToMousePosition();
 
-            Start_Button.SetActive(true);
-            OnScreenPrompt_01.SetActive(true);
+            //Start_Button.SetActive(true);
+            //OnScreenPrompt_01.SetActive(true);
 
         }
         else
         {
             RotationIndicator.SetActive(false);
             TranslationIndicator.SetActive(false);
-            Start_Button.SetActive(false);
-            OnScreenPrompt_01.SetActive(false);
+            // Start_Button.SetActive(false);
+            // OnScreenPrompt_01.SetActive(false);
         }
     }
 

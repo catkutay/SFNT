@@ -3047,16 +3047,6 @@ struct Hide_Show_t21BBE830397B48D7EF9417D116A1E6E09C053520  : public MonoBehavio
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Char_Static_Mesh_4;
 	// UnityEngine.GameObject Hide_Show::char_static
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___char_static_5;
-	// UnityEngine.GameObject Hide_Show::HardHat
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___HardHat_6;
-	// UnityEngine.GameObject Hide_Show::OnScreenPrompt_01
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___OnScreenPrompt_01_7;
-	// UnityEngine.GameObject Hide_Show::OnScreenPrompt_02
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___OnScreenPrompt_02_8;
-	// UnityEngine.GameObject Hide_Show::HiVisVest
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___HiVisVest_9;
-	// UnityEngine.GameObject Hide_Show::Boots
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Boots_10;
 };
 
 // HyperlinkHandler
@@ -5361,86 +5351,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Hide_Show_Update_m68F22CF62AF4DBE386FB48
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Hide_Show_whenButton01Clicked_m9A8A56F1854FAB473719B765AE2854E42F525655 (Hide_Show_t21BBE830397B48D7EF9417D116A1E6E09C053520* __this, const RuntimeMethod* method) 
 {
 	{
-		// if (Char_Static_Mesh.activeInHierarchy == false)
+		// Char_Static_Mesh.SetActive(false);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___Char_Static_Mesh_4;
 		NullCheck(L_0);
-		bool L_1;
-		L_1 = GameObject_get_activeInHierarchy_m49250F4F168DCC5388D5BE4F6A5681386907B109(L_0, NULL);
-		if (L_1)
-		{
-			goto IL_001b;
-		}
-	}
-	{
-		// Char_Static_Mesh.SetActive(true);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = __this->___Char_Static_Mesh_4;
-		NullCheck(L_2);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_2, (bool)1, NULL);
-		goto IL_0027;
-	}
-
-IL_001b:
-	{
-		// Char_Static_Mesh.SetActive(false);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___Char_Static_Mesh_4;
-		NullCheck(L_3);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_3, (bool)0, NULL);
-	}
-
-IL_0027:
-	{
-		// if (OnScreenPrompt_01.activeInHierarchy == false)
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_4 = __this->___OnScreenPrompt_01_7;
-		NullCheck(L_4);
-		bool L_5;
-		L_5 = GameObject_get_activeInHierarchy_m49250F4F168DCC5388D5BE4F6A5681386907B109(L_4, NULL);
-		if (L_5)
-		{
-			goto IL_0042;
-		}
-	}
-	{
-		// OnScreenPrompt_01.SetActive(true);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = __this->___OnScreenPrompt_01_7;
-		NullCheck(L_6);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_6, (bool)1, NULL);
-		goto IL_004e;
-	}
-
-IL_0042:
-	{
-		// OnScreenPrompt_01.SetActive(false);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7 = __this->___OnScreenPrompt_01_7;
-		NullCheck(L_7);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_7, (bool)0, NULL);
-	}
-
-IL_004e:
-	{
-		// if (char_static.activeInHierarchy == true)
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_8 = __this->___char_static_5;
-		NullCheck(L_8);
-		bool L_9;
-		L_9 = GameObject_get_activeInHierarchy_m49250F4F168DCC5388D5BE4F6A5681386907B109(L_8, NULL);
-		if (!L_9)
-		{
-			goto IL_0068;
-		}
-	}
-	{
-		// char_static.SetActive(false);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_10 = __this->___char_static_5;
-		NullCheck(L_10);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_10, (bool)0, NULL);
-		return;
-	}
-
-IL_0068:
-	{
-		// char_static.SetActive(true);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = __this->___char_static_5;
-		NullCheck(L_11);
-		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_11, (bool)1, NULL);
+		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)0, NULL);
 		// }
 		return;
 	}
