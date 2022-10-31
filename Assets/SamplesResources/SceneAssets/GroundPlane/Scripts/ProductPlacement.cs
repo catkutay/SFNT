@@ -12,7 +12,7 @@ using Vuforia.UnityRuntimeCompiled;
 public class ProductPlacement : MonoBehaviour
 {
 
-    //public GameObject Start_Button;
+    public GameObject Start_Button_Hide;
     //public GameObject OnScreenPrompt_01;
 
     public bool GroundPlaneHitReceived { get; private set; }
@@ -85,7 +85,7 @@ public class ProductPlacement : MonoBehaviour
 
             SnapProductToMousePosition();
 
-            //Start_Button.SetActive(true);
+            Start_Button_Hide.SetActive(true);
             //OnScreenPrompt_01.SetActive(true);
 
         }
@@ -93,7 +93,7 @@ public class ProductPlacement : MonoBehaviour
         {
             RotationIndicator.SetActive(false);
             TranslationIndicator.SetActive(false);
-            // Start_Button.SetActive(false);
+            Start_Button_Hide.SetActive(false);
             // OnScreenPrompt_01.SetActive(false);
         }
     }
