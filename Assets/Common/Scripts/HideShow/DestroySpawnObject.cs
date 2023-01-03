@@ -8,7 +8,7 @@ public class DestroySpawnObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(SpawnObjectPrefab, 3);
+        Destroy(SpawnObjectPrefab, 2);
     }
 
     // Update is called once per frame

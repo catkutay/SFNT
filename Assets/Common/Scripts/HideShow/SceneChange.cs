@@ -7,9 +7,13 @@ public class SceneChange : MonoBehaviour
 {
     public void Scene1()
     {
-        SceneManager.LoadScene("3-GroundPlane");
+        SceneManager.LoadScene("1-Menu");
     }
     public void Scene2()
+    {
+        SceneManager.LoadScene("3-GroundPlane");
+    }
+    public void Scene3()
     {
         SceneManager.LoadScene("4-GroundPlane");
     }

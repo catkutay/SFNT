@@ -12,8 +12,9 @@ using Vuforia.UnityRuntimeCompiled;
 public class ProductPlacement : MonoBehaviour
 {
 
-    public GameObject Start_Button_Hide;
+    //public GameObject Start_Button_Hide;
     //public GameObject OnScreenPrompt_01;
+    //public AudioSource audioSource;
 
     public bool GroundPlaneHitReceived { get; private set; }
     Vector3 ProductScale
@@ -25,10 +26,36 @@ public class ProductPlacement : MonoBehaviour
         }
     }
 
+    // Augmented object
     [Header("Augmentation Object")]
+    
+    // character
     [SerializeField] GameObject Character = null;
-    //[SerializeField] GameObject ChairShadow = null;
+    // [SerializeField] GameObject CharacterBody = null;
 
+    // character body parts
+    [SerializeField] GameObject Arms = null;
+    [SerializeField] GameObject Beard = null;
+    [SerializeField] GameObject Chest = null;
+    [SerializeField] GameObject Foot = null;
+    [SerializeField] GameObject Hair = null;
+    [SerializeField] GameObject Hands = null;
+    [SerializeField] GameObject Head = null;
+    [SerializeField] GameObject Hip = null;
+    [SerializeField] GameObject Legs = null;
+    [SerializeField] GameObject ShinLower = null;
+    [SerializeField] GameObject ShinUpper = null;
+    [SerializeField] GameObject Shoulders = null;
+    [SerializeField] GameObject Stomach = null;
+
+    // character clothes
+    [SerializeField] GameObject Shirt = null;
+    [SerializeField] GameObject Pants = null;
+    [SerializeField] GameObject Shoes = null;
+
+    
+    
+    // augmented object controller
     [Header("Control Indicators")]
     [SerializeField] GameObject TranslationIndicator = null;
     [SerializeField] GameObject RotationIndicator = null;
@@ -37,20 +64,50 @@ public class ProductPlacement : MonoBehaviour
     [Range(0.1f, 2.0f)]
     [SerializeField] float ProductSize = 0.65f;
 
-    const string RESOURCES_CHAIR_BODY = "ChairBody";//const string RESOURCES_CHAIR_BODY = "ChairBody";
-    //const string RESOURCES_Chair_FRAME = "ChairFrame";
-    //const string RESOURCES_Chair_SHADOW = "ChairShadow";
-    const string RESOURCES_CHAIR_BODY_TRANSPARENT = "ChairBodyTransparent";
-    //const string RESOURCES_Chair_FRAME_TRANSPARENT = "ChairFrameTransparent";
-    //const string RESOURCES_Chair_SHADOW_TRANSPARENT = "ChairShadowTransparent";
+    const string RESOURCES_MALE_SHIRT = "shirt";
+    const string RESOURCES_MALE_PANTS = "pants";
+    const string RESOURCES_MALE_SHOES = "shoes";
+    const string RESOURCES_CHARACTER_BODY = "Body";
+    
+    const string RESOURCES_TRANSPARENT = "EXAMPLE HAND4";
+    // const string RESOURCES_MALE_PANTS_TRANSPARENT = "MalePantsTransparent";
+    // const string RESOURCES_MALE_SHOES_TRANSPARENT = "MaleShoesTransparent";
+    // const string RESOURCES_MALE_BODY_TRANSPARENT = "MaleBodyTransparent";
+    
     const string GROUND_PLANE_NAME = "Emulator Ground Plane";
     const string FLOOR_NAME = "Floor";
 
-    MeshRenderer mChairRenderer;
-    //MeshRenderer mChairShadowRenderer;
     
-    Material[] mChairMaterials, mChairMaterialsTransparent;
-    //Material mChairShadowMaterial, mChairShadowMaterialTransparent;
+    //SkinnedMeshRenderer mCharacterBodyRenderer;
+    SkinnedMeshRenderer mArmsRenderer;
+    SkinnedMeshRenderer mBeardRenderer;
+    SkinnedMeshRenderer mChestRenderer;
+    SkinnedMeshRenderer mFootRenderer;
+    SkinnedMeshRenderer mHairRenderer;
+    SkinnedMeshRenderer mHandsRenderer;
+    SkinnedMeshRenderer mHeadRenderer;
+    SkinnedMeshRenderer mHipRenderer;
+    SkinnedMeshRenderer mLegsRenderer;
+    SkinnedMeshRenderer mShinLowerRenderer;
+    SkinnedMeshRenderer mShinUpperRenderer;
+    SkinnedMeshRenderer mShouldersRenderer;
+    SkinnedMeshRenderer mStomachRenderer;
+
+    SkinnedMeshRenderer mShirtRenderer;
+    SkinnedMeshRenderer mPantsRenderer;
+    SkinnedMeshRenderer mShoesRenderer;
+
+    
+    //MeshRenderer mSetRenderer;
+    
+    //AudioSource audioSource;
+    
+    Material[] mMaleShirtMaterials, mMaleShirtMaterialsTransparent;
+    Material[] mMalePantsMaterials, mMalePantsMaterialsTransparent;
+    Material[] mMaleShoesMaterials, mMaleShoesMaterialsTransparent;
+    Material[] mMaleBodyMaterials, mMaleBodyMaterialsTransparent;
+    
+    
     Camera mMainCamera;
     string mFloorName;
     Vector3 mOriginalChairScale;
@@ -60,8 +117,27 @@ public class ProductPlacement : MonoBehaviour
     void Start()
     {
         mMainCamera = VuforiaBehaviour.Instance.GetComponent<Camera>();
-        mChairRenderer = Character.GetComponent<MeshRenderer>();
-        //mChairShadowRenderer = ChairShadow.GetComponent<MeshRenderer>();
+        //mCharacterBodyRenderer = CharacterBody.GetComponent<SkinnedMeshRenderer>();
+        mArmsRenderer = Arms.GetComponent<SkinnedMeshRenderer>();
+        mBeardRenderer = Beard.GetComponent<SkinnedMeshRenderer>();
+        mChestRenderer = Chest.GetComponent<SkinnedMeshRenderer>();
+        mFootRenderer = Foot.GetComponent<SkinnedMeshRenderer>();
+        mHairRenderer = Hair.GetComponent<SkinnedMeshRenderer>();
+        mHandsRenderer = Hands.GetComponent<SkinnedMeshRenderer>();
+        mHeadRenderer = Head.GetComponent<SkinnedMeshRenderer>();
+        mHipRenderer = Hip.GetComponent<SkinnedMeshRenderer>();
+        mLegsRenderer = Legs.GetComponent<SkinnedMeshRenderer>();
+        mShinLowerRenderer = ShinLower.GetComponent<SkinnedMeshRenderer>();
+        mShinUpperRenderer = ShinUpper.GetComponent<SkinnedMeshRenderer>();
+        mShouldersRenderer = Shoulders.GetComponent<SkinnedMeshRenderer>();
+        mStomachRenderer = Stomach.GetComponent<SkinnedMeshRenderer>();
+
+        mShirtRenderer = Shirt.GetComponent<SkinnedMeshRenderer>();
+        mPantsRenderer = Pants.GetComponent<SkinnedMeshRenderer>();
+        mShoesRenderer = Shoes.GetComponent<SkinnedMeshRenderer>();
+
+        
+        //audioSource = Character.GetComponent<AudioSource>();
 
         SetupMaterials();
         SetupFloor();
@@ -73,8 +149,11 @@ public class ProductPlacement : MonoBehaviour
     void Update()
     {
         EnablePreviewModeTransparency(!mIsPlaced);
+        
         if (!mIsPlaced)
             RotateTowardsCamera(Character);
+            
+            
 
         if (mIsPlaced)
         {
@@ -84,8 +163,10 @@ public class ProductPlacement : MonoBehaviour
                                             && !UnityRuntimeCompiledFacade.Instance.IsUnityUICurrentlySelected());
 
             SnapProductToMousePosition();
-
-            Start_Button_Hide.SetActive(true);
+            
+            
+            
+            //Start_Button_Hide.SetActive(true);
             //OnScreenPrompt_01.SetActive(true);
 
         }
@@ -93,8 +174,7 @@ public class ProductPlacement : MonoBehaviour
         {
             RotationIndicator.SetActive(false);
             TranslationIndicator.SetActive(false);
-            Start_Button_Hide.SetActive(false);
-            // OnScreenPrompt_01.SetActive(false);
+            
         }
     }
 
@@ -115,8 +195,8 @@ public class ProductPlacement : MonoBehaviour
             // 2. Ground Plane Hit was received for this frame
             var isVisible = VuforiaBehaviour.Instance.DevicePoseBehaviour.TargetStatus.IsTrackedOrLimited() && GroundPlaneHitReceived;
             //mChairRenderer.enabled = mChairShadowRenderer.enabled = isVisible;
-            mChairRenderer.enabled = isVisible;
-            
+            //mCharacterBodyRenderer.enabled = isVisible;
+            mArmsRenderer.enabled = mBeardRenderer.enabled = mChestRenderer.enabled = mFootRenderer.enabled = mHairRenderer.enabled = mHandsRenderer.enabled = mHeadRenderer.enabled = mHipRenderer.enabled = mLegsRenderer.enabled = mPantsRenderer.enabled = mShinLowerRenderer.enabled = mShinUpperRenderer.enabled = mShirtRenderer.enabled = mShoesRenderer.enabled = mShouldersRenderer.enabled = mStomachRenderer.enabled = isVisible;
             
         }
     }
@@ -172,28 +252,68 @@ public class ProductPlacement : MonoBehaviour
     public void OnAutomaticHitTest(HitTestResult result)
     {
         mAutomaticHitTestFrameCount = Time.frameCount;
-
+        
         if (!mIsPlaced)
         {
             // Content is not placed yet. So we place the augmentation at HitTestResult
             // position to provide a visual feedback about where the augmentation will be placed.
             Character.transform.position = result.Position;
+            
         }
     }
 
     void SetupMaterials()
     {
-        mChairMaterials = new[]
+        // mCharacterBodyMaterials = new[]
+        //                   {
+        //                       Resources.Load<Material>(RESOURCES_CHARACTER_BODY),
+        //                   };
+
+        // mCharacterBodyMaterialsTransparent = new[]
+        //                              {
+        //                                  Resources.Load<Material>(RESOURCES_CHARACTER_BODY_TRANSPARENT),
+        //                              };
+
+        mMaleShirtMaterials = new[]
                           {
-                              Resources.Load<Material>(RESOURCES_CHAIR_BODY),
-                              //Resources.Load<Material>(RESOURCES_Chair_FRAME)
+                              Resources.Load<Material>(RESOURCES_MALE_SHIRT),
                           };
 
-        mChairMaterialsTransparent = new[]
+        mMaleShirtMaterialsTransparent = new[]
                                      {
-                                         Resources.Load<Material>(RESOURCES_CHAIR_BODY_TRANSPARENT),
-                                         //Resources.Load<Material>(RESOURCES_Chair_FRAME_TRANSPARENT)
+                                         Resources.Load<Material>(RESOURCES_TRANSPARENT),
                                      };
+
+        mMalePantsMaterials = new[]
+                          {
+                              Resources.Load<Material>(RESOURCES_MALE_PANTS),
+                          };
+
+        mMalePantsMaterialsTransparent = new[]
+                                     {
+                                         Resources.Load<Material>(RESOURCES_TRANSPARENT),
+                                     };
+
+        mMaleShoesMaterials = new[]
+                          {
+                              Resources.Load<Material>(RESOURCES_MALE_SHOES),
+                          };
+
+        mMaleShoesMaterialsTransparent = new[]
+                                     {
+                                         Resources.Load<Material>(RESOURCES_TRANSPARENT),
+                                     };
+
+        mMaleBodyMaterials = new[]
+                          {
+                              Resources.Load<Material>(RESOURCES_CHARACTER_BODY),
+                          };
+
+        mMaleBodyMaterialsTransparent = new[]
+                                     {
+                                         Resources.Load<Material>(RESOURCES_TRANSPARENT),
+                                     };
+
 
         //mChairShadowMaterial = Resources.Load<Material>(RESOURCES_Chair_SHADOW);
         //mChairShadowMaterialTransparent = Resources.Load<Material>(RESOURCES_Chair_SHADOW_TRANSPARENT);
@@ -216,8 +336,25 @@ public class ProductPlacement : MonoBehaviour
 
     void EnablePreviewModeTransparency(bool previewEnabled)
     {
-        mChairRenderer.materials = previewEnabled ? mChairMaterialsTransparent : mChairMaterials;
-        //mChairShadowRenderer.material = previewEnabled ? mChairShadowMaterialTransparent : mChairShadowMaterial;
+        //mCharacterBodyRenderer.materials = previewEnabled ? mCharacterBodyMaterialsTransparent : mCharacterBodyMaterials;
+        mArmsRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mBeardRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mChestRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mFootRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mHairRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mHandsRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mHeadRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mHipRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mLegsRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mShinLowerRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mShinUpperRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mShouldersRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+        mStomachRenderer.materials = previewEnabled ? mMaleBodyMaterialsTransparent : mMaleBodyMaterials;
+
+        mShirtRenderer.materials = previewEnabled ? mMaleShirtMaterialsTransparent : mMaleShirtMaterials;
+        mPantsRenderer.materials = previewEnabled ? mMalePantsMaterialsTransparent : mMalePantsMaterials;
+        mShoesRenderer.materials = previewEnabled ? mMaleShoesMaterialsTransparent : mMaleShoesMaterials;
+        
     }
 
     void RotateTowardsCamera(GameObject augmentation)
@@ -229,4 +366,3 @@ public class ProductPlacement : MonoBehaviour
     }
 
 }
-

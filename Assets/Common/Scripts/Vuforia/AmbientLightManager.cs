@@ -30,7 +30,7 @@ public class AmbientLightManager : MonoBehaviour
             var intensity = mVuforiaWorld.IlluminationData.AmbientIntensity.Value / 1000f;
 
             // Set light intensity to range between 0 and it's max intensity value
-            mSceneLight.intensity = Mathf.Clamp(intensity, 2, mMaxIntensity);
+            mSceneLight.intensity = Mathf.Clamp(intensity, 1, mMaxIntensity);
 
             // Set to scene's ambient light intensity and clamp between 0 and 1
             RenderSettings.ambientIntensity = Mathf.Clamp01(intensity);

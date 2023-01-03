@@ -16,10 +16,13 @@ public class GroundPlaneUI : MonoBehaviour
     [SerializeField] Text Instructions = null;
     [SerializeField] CanvasGroup ScreenReticle = null;
 
+    public AudioClip clip;
+    public float volume=1;
+
     const string CHAIR_PLACEMENT_HINT = "Tap to place the character";
     const string CHAIR_CONTROLS_WITH_PINCH = "• Touch and drag to move the charecter\n• Use two fingers to rotate or pinch to scale";
     const string CHAIR_CONTROLS_WITHOUT_PINCH = "• Touch and drag to move the character\n• Use two fingers to rotate";
-    const string POINT_DEVICE_TO_GROUND_HINT = "Point device towards ground";
+    const string POINT_DEVICE_TO_GROUND_HINT = "Point phone towards ground";
     const string MOVE_TO_ANOTHER_PLACE_HINT = "Move to get better tracking for placing an anchor";
 
     PointerEventData mPointerEventData;
@@ -54,19 +57,23 @@ public class GroundPlaneUI : MonoBehaviour
         {
             // We got an automatic hit test this frame, hide the onscreen reticle when we get a hit test
             ScreenReticle.alpha = 0;
+            //AudioSource.PlayClipAtPoint(clip, transform.position, volume);
 
             if (mIsAnchorTracking)
                 Instructions.text = mTouchHandler.EnablePinchScaling ? CHAIR_CONTROLS_WITH_PINCH : CHAIR_CONTROLS_WITHOUT_PINCH;
             else
                 Instructions.text = CHAIR_PLACEMENT_HINT;
+                
         }
         else
         {
             // No automatic hit test, so set alpha based on which plane mode is active
             if (!mProductPlacement.GroundPlaneHitReceived)
                 ScreenReticle.alpha = 1;
+                //AudioSource.PlayClipAtPoint(clip, transform.position, volume);
 
             Instructions.text = mProductPlacement.GroundPlaneHitReceived ? MOVE_TO_ANOTHER_PLACE_HINT : POINT_DEVICE_TO_GROUND_HINT;
+            
         }
 
         // Surface Indicator visibility conditions rely upon GroundPlaneHitReceived,

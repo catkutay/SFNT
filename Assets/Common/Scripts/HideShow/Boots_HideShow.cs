@@ -6,6 +6,7 @@ public class Boots_HideShow : MonoBehaviour
 {
 
     public GameObject Boots;
+    public GameObject Thongs;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,14 @@ public class Boots_HideShow : MonoBehaviour
     }
 
     public void whenButtonClicked() {
-        if(Boots.activeInHierarchy == false)
-            Boots.SetActive(true);
-        else
+        if(Boots.activeInHierarchy == true)
             Boots.SetActive(false);
+        else
+            Boots.SetActive(true);
+
+        if(Thongs.activeInHierarchy == false)
+            Thongs.SetActive(true);
+        else
+            Thongs.SetActive(false);
     }
 }

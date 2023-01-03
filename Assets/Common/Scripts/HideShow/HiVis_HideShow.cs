@@ -6,6 +6,7 @@ public class HiVis_HideShow : MonoBehaviour
 {
 
     public GameObject HiVis;
+    public GameObject HiVis_Inside;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,10 @@ public class HiVis_HideShow : MonoBehaviour
             HiVis.SetActive(false);
         else
             HiVis.SetActive(true);
+
+        if (HiVis_Inside.activeInHierarchy == true)
+            HiVis_Inside.SetActive(false);
+        else
+            HiVis_Inside.SetActive(true);
     }
 }
